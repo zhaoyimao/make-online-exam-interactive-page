@@ -13,6 +13,66 @@
             padding: 0;
         }
     </style>
+    <script>
+        function $(id) {
+            return document.getElementById(id);
+        }
+
+        function isSecondQuestionRight() {
+            let answer = [];
+            document.getElementsByName("q2").forEach((node) => {
+                answer.push(node.value);
+            });
+            return answer.join(",") === "封装性,继承性,多态性";
+        }
+
+        function calcBlankFillingQuestions() {
+            let scoreForEachQuestion = 5;
+
+            let score = 0;
+            let isFirstQuestionRight = document.querySelector("#q1").value === "统一建模语言";
+            if (isFirstQuestionRight) {
+                score += scoreForEachQuestion;
+            }
+            if (isSecondQuestionRight()) {
+                score += scoreForEachQuestion;
+            }
+
+            return score;
+        }
+
+        function calcSingleChoiceQuestions() {
+            return 1;
+        }
+
+        function calcMultipleChoiceQuestion() {
+            return 1;
+        }
+
+        function calcJudgementQuestion() {
+            return 1;
+        }
+
+        function calcShortAnswerQuestions() {
+            return 1;
+        }
+
+        function calculateScore() {
+            let score = 0;
+            score += calcBlankFillingQuestions();
+            score += calcSingleChoiceQuestions();
+            score += calcMultipleChoiceQuestion();
+            score += calcJudgementQuestion();
+            score += calcShortAnswerQuestions();
+            alert("你的得分是：" + score);
+        }
+        
+        window.onload = function () {
+            document.getElementById("btnSubmit").onclick = function () {
+                calculateScore();
+            }
+        }
+    </script>
 </head>
 <body>
 <h1>统一建模语言理论测试</h1>
@@ -48,11 +108,11 @@
     <h2>一、填空题（每空5分，共20分）</h2>
     <ol>
         <li>
-            <label>UML的中文全称是：<input type="text"/></label>
+            <label>UML的中文全称是：<input type="text" id="q1"/></label>
         </li>
         <li>
             <label for="">对象最突出的特征是：</label>
-            <input type="text"><input type="text"><input type="text">
+            <input type="text" name="q2"><input type="text" name="q2"><input type="text" name="q2">
         </li>
     </ol>
 </section>
@@ -129,7 +189,7 @@
     </ol>
 </section>
 <section>
-    <button>计算分数</button>
+    <button id="btnSubmit">计算分数</button>
 </section>
 
 </body>
