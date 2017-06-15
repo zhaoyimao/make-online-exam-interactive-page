@@ -14,33 +14,28 @@
         }
     </style>
     <script>
-        function scoreForSecondQuestion(answers) {
-            const scoreForEachQuestion = 5;
-            let userAnswers = [];
-            document.getElementsByName("q2").forEach((node) => {
-                userAnswers.push(node.value);
-            });
-            let rightQuestionsCount = userAnswers.filter((a, index) => a === answers[index]).length;
-            return rightQuestionsCount * scoreForEachQuestion
-        }
-
-        function calcBlankFillingQuestions() {
-            let scoreForEachQuestion = 5;
-
-            let score = 0;
-            let isFirstQuestionRight = document.querySelector("#q1").value === "统一建模语言";
-            if (isFirstQuestionRight) {
-                score += scoreForEachQuestion;
-            }
-            score += scoreForSecondQuestion(["封装性", "继承性", "多态性"]);
-
-            return score;
-        }
-
         let calcScore = function (questions, scoreForEachQuestion, callback) {
             let rightQuestionsCount = questions.filter((q) => callback(q.name, q.answer)).length;
             return rightQuestionsCount * scoreForEachQuestion;
         };
+
+        function calcBlankFillingQuestions() {
+            return calcScore([{
+                name: "q1",
+                answer: "统一建模语言"
+            }, {
+                name: "q2-1",
+                answer: "封装性"
+            }, {
+                name: "q2-2",
+                answer: "继承性"
+            }, {
+                name: "q2-3",
+                answer: "多态性"
+            }], 5, (name, answer) => {
+                return document.querySelector("input[name=" + name + "]").value === answer;
+            });
+        }
 
         function calcSingleChoiceQuestions() {
             return calcScore([{name: "q3", answer: "B"}, {name: "q4", answer: "A"}], 10, (name, answer) => {
@@ -133,11 +128,11 @@
     <h2>一、填空题（每空5分，共20分）</h2>
     <ol>
         <li>
-            <label>UML的中文全称是：<input type="text" id="q1"/></label>
+            <label>UML的中文全称是：<input type="text" name="q1"/></label>
         </li>
         <li>
             <label>对象最突出的特征是：</label>
-            <input type="text" name="q2"><input type="text" name="q2"><input type="text" name="q2">
+            <input type="text" name="q2-1"><input type="text" name="q2-2"><input type="text" name="q2-3">
         </li>
     </ol>
 </section>
