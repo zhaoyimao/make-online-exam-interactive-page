@@ -43,19 +43,10 @@
         }
 
         function calcSingleChoiceQuestions() {
-            let score = 0;
-            let isFirstQuestionRight = checkSingleChoiceQuestion("q3", "B");
-            let isSecondQuestionRight = checkSingleChoiceQuestion("q4", "A");
-
-            if (isFirstQuestionRight) {
-                score += 5;
-            }
-
-            if (isSecondQuestionRight) {
-                score += 5;
-            }
-
-            return score;
+            const scoreForEachQuestion = 5;
+            let questions = [{name: "q3", answer: "B"}, {name: "q4", answer: "A"}];
+            let rightQuestionsCount = questions.filter((q) => checkSingleChoiceQuestion(q.name, q.answer)).length;
+            return rightQuestionsCount * scoreForEachQuestion;
         }
 
         function calcMultipleChoiceQuestion() {
@@ -79,7 +70,7 @@
             score += calcShortAnswerQuestions();
             alert("你的得分是：" + score);
         }
-        
+
         window.onload = function () {
             document.getElementById("btnSubmit").onclick = function () {
                 calculateScore();
