@@ -43,7 +43,7 @@
         }
 
         function calcSingleChoiceQuestions() {
-            const scoreForEachQuestion = 5;
+            const scoreForEachQuestion = 10;
             let questions = [{name: "q3", answer: "B"}, {name: "q4", answer: "A"}];
             let rightQuestionsCount = questions.filter((q) => checkSingleChoiceQuestion(q.name, q.answer)).length;
             return rightQuestionsCount * scoreForEachQuestion;
@@ -59,21 +59,22 @@
         }
 
         function calcMultipleChoiceQuestion() {
-            const scoreForEachQuestion = 5;
+            const scoreForEachQuestion = 10;
             let questions = [{name: "q5", answer: ["A", "B", "D"]}, {name: "q6", answer: ["A", "B", "C"]}];
             let rightQuestionsCount = questions.filter((q) => checkMultipleChoicesQuestion(q.name, q.answer)).length;
             return rightQuestionsCount * scoreForEachQuestion;
         }
 
         function calcJudgementQuestion() {
-            const scoreForEachQuestion = 5;
+            const scoreForEachQuestion = 10;
             let questions = [{name: "q7", answer: "false"}, {name: "q8", answer: "true"}];
             let rightQuestionsCount = questions.filter((q) => checkSingleChoiceQuestion(q.name, q.answer)).length;
             return rightQuestionsCount * scoreForEachQuestion;
         }
 
         function calcShortAnswerQuestions() {
-            return 1;
+            let isRight = document.querySelector("textarea[name=q9]").value === "模型是对现实世界的简化和抽象，模型是对所研究的系统、过程、事物或概念的一种表达形式。可以是物理实体；可以是某种图形；或者是一种数学表达式。";
+            return isRight ? 20 : 0;
         }
 
         function calculateScore() {
@@ -202,7 +203,7 @@
         <li>
             <p>简述什么是模型以及模型的表现形式？</p>
             <div>
-                <textarea name="" id="" cols="80" rows="10"></textarea>
+                <textarea name="q9" cols="80" rows="10"></textarea>
             </div>
         </li>
     </ol>
