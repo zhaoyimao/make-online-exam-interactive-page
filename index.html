@@ -14,12 +14,14 @@
         }
     </style>
     <script>
-        function isSecondQuestionRight() {
-            let answer = [];
+        function scoreForSecondQuestion(answers) {
+            const scoreForEachQuestion = 5;
+            let userAnswers = [];
             document.getElementsByName("q2").forEach((node) => {
-                answer.push(node.value);
+                userAnswers.push(node.value);
             });
-            return answer.join(",") === "封装性,继承性,多态性";
+            let rightQuestionsCount = userAnswers.filter((a, index) => a === answers[index]).length;
+            return rightQuestionsCount * scoreForEachQuestion
         }
 
         function calcBlankFillingQuestions() {
@@ -30,9 +32,7 @@
             if (isFirstQuestionRight) {
                 score += scoreForEachQuestion;
             }
-            if (isSecondQuestionRight()) {
-                score += scoreForEachQuestion;
-            }
+            score += scoreForSecondQuestion(["封装性", "继承性", "多态性"]);
 
             return score;
         }
@@ -84,7 +84,7 @@
             score += calcMultipleChoiceQuestion();
             score += calcJudgementQuestion();
             score += calcShortAnswerQuestions();
-            alert("你的得分是：" + score);
+            alert("你的得分是：" + score + "分！");
         }
 
         window.onload = function () {
@@ -131,7 +131,7 @@
             <label>UML的中文全称是：<input type="text" id="q1"/></label>
         </li>
         <li>
-            <label for="">对象最突出的特征是：</label>
+            <label>对象最突出的特征是：</label>
             <input type="text" name="q2"><input type="text" name="q2"><input type="text" name="q2">
         </li>
     </ol>
