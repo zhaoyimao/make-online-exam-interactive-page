@@ -84,7 +84,7 @@
             score += calcMultipleChoiceQuestion();
             score += calcJudgementQuestion();
             score += calcShortAnswerQuestions();
-            alert("你的得分是：" + score + "分！");
+            document.querySelector("#score").innerText = score.toString();
         }
 
         window.onload = function () {
@@ -105,7 +105,9 @@
             <td>时间：</td>
             <td>100分钟</td>
             <td>得分：</td>
-            <td>100</td>
+            <td>
+                <span id="score"></span>
+            </td>
         </tr>
         <tr>
             <td>班级：</td>
