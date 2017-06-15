@@ -66,7 +66,10 @@
         }
 
         function calcJudgementQuestion() {
-            return 1;
+            const scoreForEachQuestion = 5;
+            let questions = [{name: "q7", answer: "false"}, {name: "q8", answer: "true"}];
+            let rightQuestionsCount = questions.filter((q) => checkSingleChoiceQuestion(q.name, q.answer)).length;
+            return rightQuestionsCount * scoreForEachQuestion;
         }
 
         function calcShortAnswerQuestions() {
@@ -183,13 +186,13 @@
     <ol>
         <li>
             用例图只是用于和客户交流和沟通的，用于确定需求。
-            <input type="radio">√
-            <input type="radio">x
+            <input type="radio" name="q7" value="true">√
+            <input type="radio" name="q7" value="false">x
         </li>
         <li>
             在状态图中，终止状态在一个状态图中允许有任意多个。
-            <input type="radio">√
-            <input type="radio">x
+            <input type="radio" name="q8" value="true">√
+            <input type="radio" name="q8" value="false">x
         </li>
     </ol>
 </section>
