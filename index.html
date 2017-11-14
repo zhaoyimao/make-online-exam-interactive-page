@@ -14,6 +14,8 @@
         }
     </style>
     <script>
+        // 任务3.2: 计算
+
         let calcScore = function (questions, scoreForEachQuestion, callback) {
             let rightQuestionsCount = questions.filter((q) => callback(q.name, q.answer)).length;
             return rightQuestionsCount * scoreForEachQuestion;
