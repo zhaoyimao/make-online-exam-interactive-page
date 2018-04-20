@@ -67,4 +67,5 @@ function getShortanswer(system_answer,user_answer){//获取简答题分数
     console.log("简答"+shortanswer_score);
     return shortanswer_score;
 }
+
 //module.exports=getScore;
